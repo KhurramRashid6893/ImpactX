@@ -31,7 +31,7 @@ A Flask-based web app that turns near‑Earth object (NEO) data and basic impact
 
 ## Live demo
 
-_Add your link here (e.g., Cloud Run / Render / Railway)._
+_https://the-quaser-effect.onrender.com_
 
 ---
 
