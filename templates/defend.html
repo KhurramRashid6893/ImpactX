@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Defend Earth Challenge{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/defend.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="defend-page" aria-live="polite" aria-atomic="true">
+    <div class="challenge-header">
+        <h2 class="page-title" id="challenge-title">Defend Earth Challenge</h2>
+        <p>An asteroid is on a collision course! You have <span class="countdown" id="countdown-timer">60</span> seconds to choose a mitigation strategy.</p>
+    </div>
+
+    <div id="game-container">
+        <div class="mitigation-options" role="radiogroup" aria-labelledby="challenge-title">
+            <div class="option-card" data-strategy="kinetic" tabindex="0" role="radio" aria-checked="false">
+                <h3><i class="fas fa-bullseye"></i> Kinetic Impactor</h3>
+                <p>Launch a high-speed projectile to collide with the asteroid, altering its trajectory.</p>
+                <p class="small-text">Effectiveness: Medium. Best for asteroids with long lead times.</p>
+            </div>
+            <div class="option-card" data-strategy="gravity" tabindex="0" role="radio" aria-checked="false">
+                <h3><i class="fas fa-gravity"></i> Gravity Tractor</h3>
+                <p>Use a spacecraft's small gravitational pull to gently tug the asteroid off course over years.</p>
+                <p class="small-text">Effectiveness: Low. Requires very long lead times (years).</p>
+            </div>
+            <div class="option-card" data-strategy="nuclear" tabindex="0" role="radio" aria-checked="false">
+                <h3><i class="fas fa-radiation"></i> Nuclear Deflection</h3>
+                <p>Detonate a nuclear device near the asteroid to vaporize a portion of its surface, changing its course.</p>
+                <p class="small-text">Effectiveness: High. A last-resort option for immediate threats.</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button id="commit-btn" class="btn btn-primary" aria-label="Commit to selected strategy" disabled><i class="fas fa-flag"></i> Commit Strategy</button>
+        </div>
+    </div>
+
+    <div class="outcome-container" id="outcome-container">
+    </div>
+
+    <section class="leaderboard-section">
+        <h3>High Scores</h3>
+        <ol class="leaderboard-list" id="leaderboard"></ol>
+    </section>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/defend.js') }}"></script>
+{% endblock %}

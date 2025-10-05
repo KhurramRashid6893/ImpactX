@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Defense | Meteor Madness - Asteroid Defense Command{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mitigation.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="info-panel thought-panel">
+        <i class="fas fa-hand-fist thought-icon icon-mitigation-focus"></i>
+        <div class="thought-content">
+            <p class="thought-quote">"Delay is not an option. Calculate the deflection vector and choose the protocol with the highest certainty."</p>
+            <span class="thought-source">- Defense Command Policy 9.3</span>
+        </div>
+    </section>
+
+    <h2 class="page-title"><i class="fas fa-sitemap"></i> Deflection Strategies</h2>
+
+    <section class="mitigation-grid">
+        <div class="mitigation-card module-card card-kinetic">
+            <h3 class="module-title-secondary"><i class="fas fa-bullseye"></i> Kinetic Impactor</h3>
+            <p class="strategy-description">High-velocity collision with a spacecraft to impart momentum and alter trajectory.</p>
+            <div class="effectiveness-display">
+                <span>Effectiveness (Est.): 70%</span>
+                <div class="effectiveness-bar"><div class="effectiveness-fill fill-70"></div></div>
+            </div>
+            <p class="time-constraint">Requires: 6-12 months lead time.</p>
+            <button class="btn btn-primary btn-simulate btn-kinetic"><i class="fas fa-play"></i> Simulate Kinetic Protocol</button>
+        </div>
+        
+        <div class="mitigation-card module-card card-gravity">
+            <h3 class="module-title-secondary"><i class="fas fa-gravity"></i> Gravity Tractor</h3>
+            <p class="strategy-description">Using a spacecraft's subtle gravitational pull to gently guide the asteroid over years.</p>
+            <div class="effectiveness-display">
+                <span>Effectiveness (Est.): 40%</span>
+                <div class="effectiveness-bar"><div class="effectiveness-fill fill-40"></div></div>
+            </div>
+            <p class="time-constraint">Requires: 5+ years lead time (Slow but reliable).</p>
+            <button class="btn btn-secondary btn-simulate btn-gravity"><i class="fas fa-play"></i> Simulate Gravity Protocol</button>
+        </div>
+        
+        <div class="mitigation-card module-card card-nuclear">
+            <h3 class="module-title-secondary"><i class="fas fa-radiation"></i> Nuclear Deflection</h3>
+            <p class="strategy-description">Detonating a device near the surface to ablate material and create a propulsive thrust.</p>
+            <div class="effectiveness-display">
+                <span>Effectiveness (Est.): 95%</span>
+                <div class="effectiveness-bar"><div class="effectiveness-fill fill-95"></div></div>
+            </div>
+            <p class="time-constraint">Requires: Low lead time (High risk, last resort).</p>
+            <button class="btn btn-critical btn-simulate btn-nuclear"><i class="fas fa-exclamation-triangle"></i> Simulate Nuclear Protocol</button>
+        </div>
+    </section>
+
+    <section class="visualization-mitigation-module module-card">
+        <h2 class="module-title"><i class="fas fa-route"></i> Deflection Trajectory Preview</h2>
+        <div class="visualization-placeholder">
+            <p class="placeholder-text">Visualization of adjusted orbital path and new risk corridor (Requires CesiumJS integration)</p>
+            <div class="placeholder-box">
+                <i class="fas fa-spinner fa-spin"></i> Loading Orbital Data...
+            </div>
+        </div>
+        <div class="trajectory-controls">
+            <label class="control-label">Deflection Angle Adjustment:</label>
+            <input type="range" min="-5" max="5" value="0" step="0.1" class="slider-input slider-trajectory">
+            <span class="value-display">0.0° Change</span>
+            <button class="btn btn-tertiary"><i class="fas fa-calculator"></i> Calculate Residual Risk</button>
+        </div>
+    </section>
+    
+    <section class="engagement-grid">
+        <div class="engagement-card module-card card-gamified">
+            <h3 class="module-title-secondary"><i class="fas fa-users-line"></i> Gamified "Defend Earth"</h3>
+            <p class="module-description">Multiplayer simulation of agency coordination (NASA, UN, FEMA) during a crisis.</p>
+            <p class="status-indicator">Status: Active</p>
+            <button class="btn btn-primary"><i class="fas fa-gamepad"></i> Join Command Center</button>
+        </div>
+        
+        <div class="engagement-card module-card card-narrative">
+            <h3 class="module-title-secondary"><i class="fas fa-rss"></i> AI Crisis Narrative (Gemini)</h3>
+            <p class="module-description">Generate breaking news headlines and social media feeds simulating public reaction to the threat.</p>
+            <p class="status-indicator">Status: Gemini AI Integrated</p>
+            <button class="btn btn-secondary"><i class="fas fa-wand-magic-sparkles"></i> Generate Scenario</button>
+        </div>
+    </section>
+</div>
+{% endblock %}

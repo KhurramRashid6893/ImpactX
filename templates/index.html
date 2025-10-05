@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Sentinel Hub | Meteor Madness - Asteroid Defense Command{% endblock %}
+
+{% block content %}
+<section class="info-panel thought-panel">
+    <i class="fas fa-quote-left thought-icon"></i>
+    <div class="thought-content">
+        <p class="thought-quote">"The greatest danger lies not in our ignorance, but in our refusal to know. Planetary defense begins with awareness."</p>
+        <span class="thought-source">- Sentinel AI Axiom</span>
+    </div>
+</section>
+
+<section class="hero-section module-card">
+    <div class="hero-content">
+        <h2 class="hero-title">Planetary Defense Command Center</h2>
+        <p class="hero-subtitle">Real-time awareness for civilian safety and preparedness. Assess the threat, initiate the protocol.</p>
+        <div class="hero-actions">
+            <a href="/simulation" class="btn btn-primary btn-cta" aria-label="Initiate Simulation Protocol"><i class="fas fa-cogs"></i> Initiate Simulation Protocol</a>
+            <a href="/resources" class="btn btn-secondary btn-cta" aria-label="View Safety Guidelines"><i class="fas fa-clipboard-list"></i> View Safety Guidelines</a>
+        </div>
+    </div>
+    <div class="hero-background-effects" aria-hidden="true">
+        <div class="star-field"></div>
+        <div class="plasma-glow"></div>
+    </div>
+</section>
+
+<section class="module-group-section">
+    <h2 class="section-title">Simulation Tools</h2>
+    <div class="dashboard-grid">
+        <a href="/simulation" class="feature-card card-simulation" tabindex="0" role="link" aria-label="Launch Threat Assessment Module">
+            <i class="fas fa-crosshairs icon-large"></i>
+            <div class="card-text">
+                <h3 class="card-title">Threat Assessment</h3>
+                <p class="card-description">Configure parameters and model asteroid impact scenarios.</p>
+                <span class="card-cta-link">Launch Module <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+        
+        <a href="/impact" class="feature-card card-data" tabindex="0" role="link" aria-label="View Consequence Analysis Reports">
+            <i class="fas fa-chart-area icon-large"></i>
+            <div class="card-text">
+                <h3 class="card-title">Consequence Analysis</h3>
+                <p class="card-description">View detailed seismic, blast, and tsunami prediction data.</p>
+                <span class="card-cta-link">View Reports <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+        
+        <a href="/mitigation" class="feature-card card-mitigation" tabindex="0" role="link" aria-label="Access Deflection Scenario Protocols">
+            <i class="fas fa-hand-fist icon-large"></i>
+            <div class="card-text">
+                <h3 class="card-title">Deflection Scenarios</h3>
+                <p class="card-description">Explore Kinetic Impact, Gravity Tractor, and other defense options.</p>
+                <span class="card-cta-link">Access Protocols <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section class="module-group-section">
+    <h2 class="section-title">Education & Storytelling</h2>
+    <div class="dashboard-grid">
+        <a href="/resources" class="feature-card card-resources" tabindex="0" role="link" aria-label="Study Public Preparedness Guides">
+            <i class="fas fa-users-viewfinder icon-large"></i>
+            <div class="card-text">
+                <h3 class="card-title">Public Preparedness</h3>
+                <p class="card-description">Essential guides, educational facts, and safety measures for citizens.</p>
+                <span class="card-cta-link">Study Guides <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+        <a href="/about" class="feature-card card-about" tabindex="0" role="link" aria-label="View Project Information">
+            <i class="fas fa-fingerprint icon-large"></i>
+            <div class="card-text">
+                <h3 class="card-title">Sentinel Signature</h3>
+                <p class="card-description">Learn about the project team, mission, and the Impactor-2025 narrative timeline.</p>
+                <span class="card-cta-link">View Mission <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+        <a href="/learn" class="feature-card card-learn" tabindex="0" role="link" aria-label="Access Interactive Learn Mode">
+            <i class="fas fa-school icon-large"></i>
+            <div class="card-text">
+                <h3 class="card-title">Learn Mode</h3>
+                <p class="card-description">Interactive lessons and quizzes to understand orbital mechanics and impacts.</p>
+                <span class="card-cta-link">Start Learning <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section class="module-group-section">
+    <h2 class="section-title">Gamification</h2>
+    <div class="dashboard-grid">
+        <a href="/defend" class="feature-card card-defend" tabindex="0" role="link" aria-label="Play the Defend Earth Challenge">
+            <i class="fas fa-gamepad icon-large"></i>
+            <div class="card-text">
+                <h3 class="card-title">Defend Earth Challenge</h3>
+                <p class="card-description">Test your skills under pressure to save Earth from an incoming asteroid.</p>
+                <span class="card-cta-link">Start Challenge <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section class="utility-module-grid">
+    <div class="module-card metrics-card">
+        <h3 class="module-title">Global Watch Status</h3>
+        <div class="metric-container">
+            <div class="metric-item">
+                <span class="metric-value metric-good">42</span>
+                <span class="metric-label">NEOs Tracked (24h)</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value metric-critical">0</span>
+                <span class="metric-label">Immediate Impact Threat</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value metric-warning">3</span>
+                <span class="metric-label">Objects of Concern (PDC)</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value metric-secondary">100%</span>
+                <span class="metric-label">Sensor Network Integrity</span>
+            </div>
+        </div>
+        <button class="btn btn-tertiary btn-full-width" aria-label="Configure Alert System"><i class="fas fa-bell"></i> Configure Alert System</button>
+    </div>
+
+    <div class="module-card expansion-card">
+        <h3 class="module-title">Advanced Modules</h3>
+        <p class="module-description">Future expansions for comprehensive defense planning.</p>
+        <div class="module-buttons">
+            <button class="btn btn-expand"><i class="fas fa-headset"></i> Sonification Mode</button>
+            <button class="btn btn-expand"><i class="fas fa-mobile-screen"></i> AR Projection</button>
+            <button class="btn btn-expand"><i class="fas fa-file-pdf"></i> Generate Full Report</button>
+        </div>
+    </div>
+</section>
+{% endblock %}

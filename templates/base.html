@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/simulation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/impact.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mitigation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resources.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/defend.css') }}">
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-left">
+                <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+                <div class="logo">
+                    <i class="fas fa-star-of-life"></i>
+                    <h1 class="logo-text">Cosmic Sentinel</h1>
+                </div>
+            </div>
+            <div class="header-right">
+                <nav class="top-nav" aria-label="Main Navigation">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/simulation" class="nav-link">Simulation</a>
+                    <a href="/impact" class="nav-link">Data</a>
+                    <a href="/mitigation" class="nav-link">Defense</a>
+                    <a href="/resources" class="nav-link">Resources</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/learn" class="nav-link">Learn</a>
+                    <a href="/defend" class="nav-link">Defend</a>
+                </nav>
+                <div class="search-bar" role="search">
+                    <input type="text" placeholder="Search NEO ID or Datasets..." aria-label="Search NEO ID or Datasets...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="profile-utility">
+                    <button class="utility-btn" aria-label="Settings"><i class="fas fa-cog"></i></button>
+                    <button class="utility-btn profile-btn" aria-label="User Profile"><i class="fas fa-user-astronaut"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <aside class="sidebar" id="sidebar" role="navigation">
+            <div class="sidebar-header">
+                <span class="system-status">System: <span class="status-online">Online</span></span>
+                <div class="system-time-container">
+                    <span id="system-time" class="system-time"></span>
+                    <span id="system-date" class="system-date"></span>
+                    <span id="system-location" class="system-location"></span>
+                </div>
+            </div>
+            <nav class="sidebar-nav-container">
+                <a href="/" class="nav-item" aria-label="Go to Dashboard">
+                    <i class="fas fa-house-chimney icon-home"></i><span class="nav-text">Dashboard</span>
+                </a>
+                <a href="/simulation" class="nav-item" aria-label="Go to Simulation Command">
+                    <i class="fas fa-rocket icon-simulation"></i><span class="nav-text">Simulation Command</span>
+                </a>
+                <a href="/impact" class="nav-item" aria-label="Go to Impact Analysis">
+                    <i class="fas fa-chart-line icon-data"></i><span class="nav-text">Impact Analysis</span>
+                </a>
+                <a href="/mitigation" class="nav-item" aria-label="Go to Defense Protocols">
+                    <i class="fas fa-shield-halved icon-mitigation"></i><span class="nav-text">Defense Protocols</span>
+                </a>
+                <a href="/resources" class="nav-item" aria-label="Go to Precautionary Guides">
+                    <i class="fas fa-book-open icon-resources"></i><span class="nav-text">Precautionary Guides</span>
+                </a>
+                <a href="/about" class="nav-item" aria-label="Go to Sentinel Signature">
+                    <i class="fas fa-fingerprint icon-about"></i><span class="nav-text">Sentinel Signature</span>
+                </a>
+                <a href="/learn" class="nav-item" aria-label="Go to Learn Mode">
+                    <i class="fas fa-school icon-learn"></i><span class="nav-text">Learn</span>
+                </a>
+                <a href="/defend" class="nav-item" aria-label="Go to Defend Earth Challenge">
+                    <i class="fas fa-gamepad icon-defend"></i><span class="nav-text">Defend</span>
+                </a>
+            </nav>
+            <div class="sidebar-utility-footer">
+                <div class="chatbot-link" tabindex="0" role="button" aria-label="Open Sentinel AI Assistant Chatbot">
+                     <i class="fas fa-robot icon-chatbot"></i><span class="nav-text">Sentinel AI Assistant</span>
+                </div>
+                <div class="version-info">
+                    <p class="small-text">V 1.0.2-Precautionary</p>
+                    <p class="small-text">NASA Space Apps Challenge</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content" role="main">
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer class="footer" role="contentinfo">
+            <div class="footer-links-container">
+                <a href="https://www.nasa.gov/" target="_blank" class="footer-link">NASA</a>
+                <a href="https://www.usgs.gov/" target="_blank" class="footer-link">USGS</a>
+                <a href="https://www.spaceappschallenge.org/" target="_blank" class="footer-link">Space Apps Challenge</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">API Status</a>
+            </div>
+            <p class="footer-credit">Developed with integrity by Team: The_Quasar_Effect 🚀 | <span class="footer-year">2025</span></p>
+        </footer>
+    </div>
+    
+    <div id="chatbot-container" class="chatbot-container" aria-live="polite">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> Sentinel AI Core</h3>
+            <span id="chat-status" class="chat-status status-online">Online</span>
+            <button id="close-chatbot-btn" class="fas fa-times close-btn" aria-label="Close Chatbot"></button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages">
+            <div class="message ai-message initial-message">
+                <div class="message-icon"><i class="fas fa-robot"></i></div>
+                <div class="message-content">Hello, I am Sentinel AI. I provide real-time facts and safety guidance regarding asteroid threats. How may I assist your defense protocols?</div>
+            </div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Ask about asteroid safety or defense..." aria-label="Ask about asteroid safety or defense...">
+            <button id="chatbot-send-btn" class="send-btn" aria-label="Send Message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    
+    <div class="tooltip-container" id="tooltip-container">
+        <div class="tooltip-content" id="tooltip-content"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tooltips.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

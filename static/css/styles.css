@@ -1,0 +1,849 @@
+/**
+ * Meteor Madness - Cosmic Sentinel Theme
+ * File: styles.css
+ * Description: Core theme, layout, and utility styles for the entire application.
+ * Theme: Deep Violet/Indigo (Deep Space) with Electric Green/Teal accents.
+ */
+
+/* ====================================================================== */
+/* 0. ROOT VARIABLES AND BASE STYLES */
+/* ====================================================================== */
+:root {
+    /* Primary Colors (Deep Space Palette) */
+    --color-bg-primary: #0b001a;      /* Deep Indigo/Violet */
+    --color-bg-secondary: #1a0833;    /* Slightly lighter panel background */
+    --color-bg-panel: #200d40;        /* Card/Module background */
+    --color-border-primary: #4a2d73;  /* Main border color */
+    
+    /* Accent Colors (Electric/Safety Palette) */
+    --color-accent-green: #00ff99;    /* Electric Green (Primary Action/Safety) */
+    --color-accent-teal: #00e5e5;     /* Neon Teal (Secondary Action/Highlight) */
+    --color-accent-warning: #ffcc00;  /* Yellow/Warning */
+    --color-accent-critical: #e81d1d; /* Red/Critical Danger */
+    
+    /* Text Colors */
+    --color-text-light: #f0f0f0;      /* Primary light text */
+    --color-text-secondary: #b0a8c2;  /* Secondary/Muted text */
+    
+    /* Typography */
+    --font-primary: 'Exo 2', sans-serif;
+    --font-secondary: 'Orbitron', sans-serif;
+    --font-size-base: 16px;
+    
+    /* Spacing and Dimensions */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --border-radius-base: 8px;
+    --border-radius-large: 12px;
+    
+    /* Sidebar Configuration */
+    --sidebar-width: 280px;
+    --sidebar-width-collapsed: 70px;
+    
+    /* Animation and Shadows */
+    --transition-speed: 0.3s ease-in-out;
+    --shadow-deep: 0 4px 15px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 15px var(--color-accent-green);
+}
+
+/* Global Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-text-light);
+    background-color: var(--color-bg-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Base Headings */
+h1, h2, h3, h4 {
+    font-family: var(--font-secondary);
+    color: white;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 0 5px rgba(0, 255, 153, 0.2);
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.8rem; margin-bottom: var(--spacing-lg); }
+h3 { font-size: 1.4rem; }
+
+/* Anchor Tag Base */
+a {
+    color: var(--color-accent-teal);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+a:hover {
+    color: var(--color-accent-green);
+}
+
+/* Button Base Styles */
+.btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: none;
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    text-align: center;
+}
+
+/* Primary Button (Defense Protocol / CTA) */
+.btn-primary {
+    background-color: var(--color-accent-green);
+    color: var(--color-bg-primary);
+    border: 2px solid var(--color-accent-green);
+}
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--color-accent-green);
+    box-shadow: 0 0 10px var(--color-accent-green);
+}
+
+/* Secondary Button (Info / Guidelines) */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-accent-teal);
+    border: 2px solid var(--color-accent-teal);
+}
+.btn-secondary:hover {
+    background-color: var(--color-accent-teal);
+    color: var(--color-bg-primary);
+    box-shadow: 0 0 10px var(--color-accent-teal);
+}
+
+/* Tertiary Button (Internal Actions) */
+.btn-tertiary {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-border-primary);
+}
+.btn-tertiary:hover {
+    background-color: var(--color-bg-panel);
+    border-color: var(--color-accent-green);
+    color: var(--color-accent-green);
+}
+
+/* Full Width Utility */
+.btn-full-width {
+    width: 100%;
+    margin-top: var(--spacing-sm);
+}
+
+
+/* ====================================================================== */
+/* 1. APP LAYOUT STRUCTURE */
+/* ====================================================================== */
+.app-container {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    grid-template-rows: 60px 1fr 60px;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+    min-height: 100vh;
+    transition: grid-template-columns var(--transition-speed);
+}
+
+.app-container.sidebar-collapsed {
+    grid-template-columns: var(--sidebar-width-collapsed) 1fr;
+}
+
+
+/* ====================================================================== */
+/* 2. HEADER STYLES */
+/* ====================================================================== */
+.header {
+    grid-area: header;
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg);
+    z-index: 1000;
+    box-shadow: var(--shadow-deep);
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+}
+
+.app-container.sidebar-collapsed .header {
+    left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
+}
+
+.header-left { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--spacing-sm); 
+}
+
+.logo { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--spacing-xs); 
+    color: var(--color-text-light);
+}
+
+.logo i { 
+    color: var(--color-accent-green); 
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 3px var(--color-accent-green));
+}
+.logo-text {
+    font-family: var(--font-secondary);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.header-right { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--spacing-md); 
+}
+
+/* Top Navigation Links */
+.top-nav {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.top-nav .nav-link {
+    color: var(--color-text-secondary);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius-base);
+    font-weight: 400;
+}
+
+.top-nav .nav-link:hover {
+    color: var(--color-accent-teal);
+    background-color: rgba(0, 229, 229, 0.1);
+}
+
+.top-nav .nav-link.active {
+    color: var(--color-accent-green);
+    border-bottom: 2px solid var(--color-accent-green);
+}
+
+/* Search Bar Styling */
+.search-bar { 
+    position: relative; 
+}
+
+.search-bar input {
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 20px;
+    color: var(--color-text-light);
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    width: 220px;
+    transition: border-color var(--transition-speed);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--color-accent-green);
+    box-shadow: 0 0 5px rgba(0, 255, 153, 0.5);
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-secondary);
+}
+
+/* Profile and Utility Icons */
+.profile-utility {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.utility-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color var(--transition-speed), background-color var(--transition-speed);
+}
+
+.utility-btn:hover {
+    color: var(--color-accent-green);
+    background-color: rgba(0, 255, 153, 0.1);
+}
+
+
+/* ====================================================================== */
+/* 3. SIDEBAR STYLES */
+/* ====================================================================== */
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--color-bg-secondary);
+    border-right: 1px solid var(--color-border-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width var(--transition-speed);
+    overflow: hidden;
+    z-index: 900;
+    position: fixed; /* Make the sidebar static */
+    top: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+    border-bottom: 1px solid var(--color-border-primary);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    text-align: left;
+}
+.system-time-container {
+    margin-top: var(--spacing-sm);
+    line-height: 1.2;
+}
+.system-date, .system-time {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+}
+
+.system-location {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+.status-online {
+    color: var(--color-accent-green);
+    font-weight: 600;
+}
+
+/* Navigation Items */
+.sidebar-nav-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Enable scrolling for nav items */
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    gap: var(--spacing-md);
+    position: relative;
+    white-space: nowrap;
+    transition: all var(--transition-speed);
+}
+
+.nav-item i {
+    font-size: 1.1rem;
+    width: 25px;
+    text-align: center;
+}
+
+.nav-item:hover {
+    color: var(--color-accent-green);
+    background-color: rgba(0, 255, 153, 0.08);
+}
+
+.nav-item.active {
+    color: white;
+    background-color: rgba(0, 255, 153, 0.15);
+    border-left: 5px solid var(--color-accent-green);
+    padding-left: calc(var(--spacing-md) - 5px);
+}
+
+.nav-item.active i {
+    color: var(--color-accent-green);
+}
+
+/* Sidebar Footer & Chatbot Link */
+.sidebar-utility-footer {
+    border-top: 1px solid var(--color-border-primary);
+    padding: var(--spacing-md);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.chatbot-link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    color: var(--color-accent-teal);
+    white-space: nowrap;
+    transition: all var(--transition-speed);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-base);
+    text-align: left;
+}
+
+.chatbot-link:hover {
+    color: var(--color-accent-green);
+    background-color: rgba(0, 255, 153, 0.08);
+}
+.icon-chatbot {
+    font-size: 1.3rem;
+}
+
+.version-info {
+    margin-top: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Collapsed Sidebar State */
+.app-container.sidebar-collapsed .nav-text,
+.app-container.sidebar-collapsed .sidebar-header,
+.app-container.sidebar-collapsed .version-info {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+.app-container.sidebar-collapsed .nav-item,
+.app-container.sidebar-collapsed .chatbot-link {
+    justify-content: center;
+    padding: var(--spacing-sm) 0;
+}
+
+.app-container.sidebar-collapsed .sidebar {
+    width: var(--sidebar-width-collapsed);
+}
+
+
+/* ====================================================================== */
+/* 4. MAIN CONTENT & DASHBOARD STYLES */
+/* ====================================================================== */
+.main-content {
+    grid-area: main;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg-primary);
+    background-image: url('https://placehold.co/1920x1080/0b001a/0d002a?text=%20');
+    background-repeat: repeat;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.module-card {
+    background-color: var(--color-bg-panel);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--border-radius-large);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-deep);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thoughts/Quote Panel */
+.thought-panel {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg-secondary);
+    border-left: 5px solid var(--color-accent-teal);
+    padding: var(--spacing-md);
+}
+
+.thought-icon {
+    font-size: 2rem;
+    color: var(--color-accent-teal);
+    margin-right: var(--spacing-md);
+}
+
+.thought-quote {
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+.thought-source {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: 0.9rem;
+    color: var(--color-accent-green);
+    font-weight: 600;
+}
+
+/* Feature Cards Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--color-bg-panel);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--border-radius-large);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-speed);
+    cursor: pointer;
+    box-shadow: var(--shadow-deep);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--color-accent-teal);
+    box-shadow: 0 10px 20px rgba(0, 229, 229, 0.3);
+}
+
+.icon-large {
+    font-size: 3rem;
+    color: var(--color-accent-teal);
+    margin-bottom: var(--spacing-sm);
+    transition: color var(--transition-speed);
+}
+
+.feature-card:hover .icon-large {
+    color: var(--color-accent-green);
+}
+
+.card-title {
+    font-family: var(--font-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-description {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    flex-grow: 1;
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-cta-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-accent-green);
+    font-weight: 600;
+}
+
+/* ====================================================================== */
+/* 5. FOOTER STYLES */
+/* ====================================================================== */
+.footer {
+    grid-area: footer;
+    background-color: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border-primary);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    position: fixed; 
+    bottom: 0;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-container.sidebar-collapsed .footer {
+    left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
+}
+
+.footer-links-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
+.footer-link {
+    margin: 0 var(--spacing-sm);
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+}
+
+.footer-link:hover {
+    color: var(--color-accent-teal);
+}
+
+.footer-credit {
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/* ====================================================================== */
+/* 6. CHATBOT STYLES (SHARED) */
+/* ====================================================================== */
+.chatbot-container {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 380px;
+    height: 500px;
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-accent-green);
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.4);
+    display: none;
+    flex-direction: column;
+    z-index: 4000;
+    overflow: hidden;
+}
+
+.chatbot-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--color-border-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-accent-green);
+    font-family: var(--font-secondary);
+    background-color: var(--color-bg-panel);
+}
+
+.chat-status {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+    background-color: rgba(0, 255, 153, 0.1);
+    color: var(--color-accent-green);
+}
+
+.chatbot-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.message {
+    display: flex;
+    max-width: 90%;
+    gap: var(--spacing-xs);
+    align-items: flex-start;
+}
+
+.message-icon {
+    font-size: 1.1rem;
+    padding-top: 0.2rem;
+}
+
+.user-message {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+.user-message .message-icon {
+    color: var(--color-accent-teal);
+}
+
+.ai-message {
+    align-self: flex-start;
+}
+.ai-message .message-icon {
+    color: var(--color-accent-green);
+}
+
+.message-content {
+    padding: 0.7rem 1rem;
+    border-radius: var(--border-radius-base);
+    font-size: 0.95rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.user-message .message-content {
+    background-color: var(--color-accent-teal);
+    color: var(--color-bg-primary);
+    border-bottom-right-radius: 2px;
+}
+
+.ai-message .message-content {
+    background-color: var(--color-bg-panel);
+    border: 1px solid var(--color-border-primary);
+    border-bottom-left-radius: 2px;
+}
+
+.chatbot-input-area {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-top: 1px solid var(--color-border-primary);
+    display: flex;
+    gap: var(--spacing-xs);
+    background-color: var(--color-bg-panel);
+}
+
+.chatbot-input-area input {
+    flex-grow: 1;
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
+    color: var(--color-text-light);
+    padding: 0.7rem;
+    border-radius: var(--border-radius-base);
+}
+
+.send-btn {
+    background-color: var(--color-accent-green);
+    color: var(--color-bg-primary);
+    padding: 0.7rem 1rem;
+}
+
+
+/* ====================================================================== */
+/* 7. RESPONSIVENESS (MOBILE FIRST) */
+/* ====================================================================== */
+
+/* Tablet and Smaller Desktop */
+@media (max-width: 1200px) {
+    .hero-title { font-size: 2.2rem; }
+    .top-nav { display: none; }
+    .utility-module-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Devices (Sidebar collapsed or hidden, Layout stack) */
+@media (max-width: 992px) {
+    .app-container {
+        grid-template-columns: var(--sidebar-width-collapsed) 1fr;
+    }
+
+    .app-container.sidebar-collapsed {
+        grid-template-columns: 0 1fr;
+    }
+    .header, .footer {
+        left: 0;
+        width: 100%;
+    }
+
+    .header { padding: 0 var(--spacing-md); }
+    .search-bar { display: none; }
+    .hero-title { font-size: 1.8rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .hero-actions { flex-direction: column; }
+    .btn-cta { width: 100%; }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100vh;
+        z-index: 3000;
+        padding-top: 0;
+        transition: width var(--transition-speed);
+        box-shadow: var(--shadow-deep);
+    }
+    
+    .app-container.sidebar-collapsed .sidebar {
+        width: var(--sidebar-width);
+    }
+    .app-container:not(.sidebar-collapsed) .sidebar {
+         width: 0;
+    }
+
+    .app-container.sidebar-collapsed .nav-text,
+    .app-container.sidebar-collapsed .sidebar-header,
+    .app-container.sidebar-collapsed .version-info,
+    .app-container.sidebar-collapsed .chatbot-link .nav-text {
+        opacity: 1;
+        visibility: visible;
+        width: auto;
+    }
+    .app-container.sidebar-collapsed .chatbot-link {
+        display: block;
+    }
+
+    .chatbot-container {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-container {
+        grid-template-areas:
+            "header header"
+            "main main"
+            "footer footer";
+        grid-template-columns: 1fr;
+    }
+
+    .header-right {
+        gap: var(--spacing-sm);
+    }
+
+    .hero-section {
+        height: 350px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .thought-panel {
+        font-size: 0.9rem;
+    }
+}
+
+/* Explosion overlay covers full screen */
+#explosion-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(255,150,0,0.9) 0%, rgba(0,0,0,0.95) 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.2s ease-in-out;
+}
+/* Flash animation */
+.flash-active {
+  opacity: 1;
+  animation: screen-flash 0.8s ease-out forwards;
+}
+@keyframes screen-flash {
+  0%   { opacity: 1; background: rgba(255,200,0,1); }
+  50%  { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+/* Shake effect */
+.shake {
+  animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+}
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-8px); }
+  40%, 60% { transform: translateX(8px); }
+}

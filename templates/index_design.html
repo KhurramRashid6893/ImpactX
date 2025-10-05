@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroid Impact Simulator</title>
+    <link rel="stylesheet" href="index_design.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Asteroid Impact Simulator</h1>
+                <p>NASA Data-Powered Impact Analysis & Mitigation Planning</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#simulation" class="active">Simulation</a></li>
+                    <li><a href="#visualization">Visualization</a></li>
+                    <li><a href="#mitigation">Mitigation</a></li>
+                    <li><a href="#education">Education</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <h2>Simulation Controls</h2>
+                <div class="control-grid">
+                    <div class="control-group">
+                        <label for="asteroid-size">Asteroid Diameter (meters)</label>
+                        <input type="range" id="asteroid-size" min="10" max="10000" value="500" class="slider">
+                        <span id="size-value">500 m</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="asteroid-speed">Impact Speed (km/s)</label>
+                        <input type="range" id="asteroid-speed" min="5" max="72" value="17" class="slider">
+                        <span id="speed-value">17 km/s</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="impact-angle">Impact Angle (degrees)</label>
+                        <input type="range" id="impact-angle" min="0" max="90" value="45" class="slider">
+                        <span id="angle-value">45°</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="location">Impact Location</label>
+                        <select id="location">
+                            <option value="ocean">Ocean</option>
+                            <option value="land">Land</option>
+                            <option value="coastal">Coastal Area</option>
+                            <option value="custom">Custom Location</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button id="run-simulation" class="btn primary">Run Simulation</button>
+                    <button id="reset" class="btn secondary">Reset</button>
+                    <button id="save-scenario" class="btn secondary">Save Scenario</button>
+                </div>
+            </section>
+
+            <!-- Visualization Area -->
+            <section class="visualization-area">
+                <div class="visualization-tabs">
+                    <button class="tab-btn active" data-tab="3d-orbit">3D Orbit</button>
+                    <button class="tab-btn" data-tab="impact-map">Impact Map</button>
+                    <button class="tab-btn" data-tab="timeline">Timeline</button>
+                    <button class="tab-btn" data-tab="risk-corridor">Risk Corridor</button>
+                </div>
+                
+                <div class="visualization-content">
+                    <!-- 3D Orbit Visualization -->
+                    <div id="3d-orbit" class="tab-content active">
+                        <div class="canvas-container">
+                            <canvas id="orbit-canvas"></canvas>
+                            <div class="orbit-controls">
+                                <button id="rotate-view">Rotate View</button>
+                                <button id="zoom-in">Zoom In</button>
+                                <button id="zoom-out">Zoom Out</button>
+                                <button id="reset-view">Reset View</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Impact Map Visualization -->
+                    <div id="impact-map" class="tab-content">
+                        <div class="map-container">
+                            <div id="map"></div>
+                            <div class="map-overlays">
+                                <label><input type="checkbox" id="population-overlay" checked> Population Density</label>
+                                <label><input type="checkbox" id="infrastructure-overlay"> Critical Infrastructure</label>
+                                <label><input type="checkbox" id="cultural-overlay"> Cultural Heritage Sites</label>
+                                <label><input type="checkbox" id="biodiversity-overlay"> Biodiversity Hotspots</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Visualization -->
+                    <div id="timeline" class="tab-content">
+                        <div class="timeline-container">
+                            <div class="timeline">
+                                <div class="timeline-event" data-time="0">
+                                    <div class="event-marker"></div>
+                                    <div class="event-content">
+                                        <h4>Impact</h4>
+                                        <p>Initial asteroid collision with Earth</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-event" data-time="5">
+                                    <div class="event-marker"></div>
+                                    <div class="event-content">
+                                        <h4>Shockwave</h4>
+                                        <p>Blast radius expands, causing structural damage</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-event" data-time="30">
+                                    <div class="event-marker"></div>
+                                    <div class="event-content">
+                                        <h4>Ejecta Fallout</h4>
+                                        <p>Debris rains down, starting fires</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-event" data-time="60">
+                                    <div class="event-marker"></div>
+                                    <div class="event-content">
+                                        <h4>Tsunami Wave (if coastal)</h4>
+                                        <p>Massive waves inundate coastal areas</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-event" data-time="120">
+                                    <div class="event-marker"></div>
+                                    <div class="event-content">
+                                        <h4>Atmospheric Effects</h4>
+                                        <p>Dust veil begins to affect climate</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-controls">
+                                <button id="play-timeline" class="btn primary">Play Timeline</button>
+                                <button id="pause-timeline" class="btn secondary">Pause</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Risk Corridor Visualization -->
+                    <div id="risk-corridor" class="tab-content">
+                        <div class="risk-container">
+                            <div class="risk-chart">
+                                <canvas id="risk-canvas"></canvas>
+                            </div>
+                            <div class="risk-legend">
+                                <h4>Impact Probability</h4>
+                                <div class="legend-item high-risk">High Risk (>10%)</div>
+                                <div class="legend-item medium-risk">Medium Risk (1-10%)</div>
+                                <div class="legend-item low-risk">Low Risk (<1%)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Panel -->
+            <section class="results-panel">
+                <h2>Impact Analysis Results</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Energy Release</h3>
+                        <div class="result-value" id="energy-value">0 MT</div>
+                        <p>TNT Equivalent</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Crater Size</h3>
+                        <div class="result-value" id="crater-value">0 km</div>
+                        <p>Diameter</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Seismic Magnitude</h3>
+                        <div class="result-value" id="seismic-value">0.0</div>
+                        <p>Richter Scale</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Tsunami Height</h3>
+                        <div class="result-value" id="tsunami-value">0 m</div>
+                        <p>Maximum Wave</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Blast Radius</h3>
+                        <div class="result-value" id="blast-value">0 km</div>
+                        <p>Total Destruction</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Affected Population</h3>
+                        <div class="result-value" id="population-value">0</div>
+                        <p>People at Risk</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mitigation Strategies -->
+            <section class="mitigation-section">
+                <h2>Mitigation Strategies</h2>
+                <div class="mitigation-options">
+                    <div class="mitigation-card">
+                        <h3>Kinetic Impactor</h3>
+                        <p>Deflect asteroid by direct collision</p>
+                        <div class="effectiveness">
+                            <span>Effectiveness:</span>
+                            <div class="effectiveness-bar">
+                                <div class="effectiveness-fill" style="width: 65%"></div>
+                            </div>
+                            <span>65%</span>
+                        </div>
+                        <button class="btn secondary">Simulate</button>
+                    </div>
+                    <div class="mitigation-card">
+                        <h3>Gravity Tractor</h3>
+                        <p>Use spacecraft gravity to alter trajectory</p>
+                        <div class="effectiveness">
+                            <span>Effectiveness:</span>
+                            <div class="effectiveness-bar">
+                                <div class="effectiveness-fill" style="width: 45%"></div>
+                            </div>
+                            <span>45%</span>
+                        </div>
+                        <button class="btn secondary">Simulate</button>
+                    </div>
+                    <div class="mitigation-card">
+                        <h3>Nuclear Deflection</h3>
+                        <p>Detonate nuclear device near asteroid</p>
+                        <div class="effectiveness">
+                            <span>Effectiveness:</span>
+                            <div class="effectiveness-bar">
+                                <div class="effectiveness-fill" style="width: 80%"></div>
+                            </div>
+                            <span>80%</span>
+                        </div>
+                        <button class="btn secondary">Simulate</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Innovation Features -->
+            <section class="innovation-section">
+                <h2>Advanced Features</h2>
+                <div class="innovation-tabs">
+                    <button class="innovation-tab active" data-innovation="narrative">AI Narrative</button>
+                    <button class="innovation-tab" data-innovation="gamified">Defend Earth</button>
+                    <button class="innovation-tab" data-innovation="sonification">Sonification</button>
+                    <button class="innovation-tab" data-innovation="ar">AR Mode</button>
+                </div>
+                
+                <div class="innovation-content">
+                    <!-- AI Narrative -->
+                    <div id="narrative" class="innovation-panel active">
+                        <div class="narrative-output">
+                            <div class="news-headline">
+                                <h3>Breaking News: Asteroid Threat Identified</h3>
+                                <p class="timestamp">Posted 2 hours ago</p>
+                            </div>
+                            <div class="news-content">
+                                <p>NASA has identified a newly discovered asteroid, designated 2023-XT1, with a potential Earth impact trajectory. Current projections indicate a 15% chance of impact in 2038.</p>
+                                <p>If it strikes, the 500-meter diameter asteroid would release energy equivalent to 2,000 megatons of TNT, creating widespread devastation across a 200km radius.</p>
+                                <p>Emergency response teams are being mobilized as scientists work to refine the asteroid's trajectory and evaluate deflection options.</p>
+                            </div>
+                            <div class="social-feed">
+                                <div class="tweet">
+                                    <div class="tweet-header">
+                                        <span class="username">@SpaceWatcher</span>
+                                        <span class="time">45m ago</span>
+                                    </div>
+                                    <p>Just heard about asteroid 2023-XT1. This is exactly why we need to fund planetary defense! #AsteroidAwareness</p>
+                                </div>
+                                <div class="tweet">
+                                    <div class="tweet-header">
+                                        <span class="username">@ScienceDaily</span>
+                                        <span class="time">1h ago</span>
+                                    </div>
+                                    <p>New study shows kinetic impactors could effectively deflect asteroids like 2023-XT1 if deployed with sufficient lead time.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn secondary" id="generate-narrative">Generate New Scenario</button>
+                    </div>
+                    
+                    <!-- Gamified Defense -->
+                    <div id="gamified" class="innovation-panel">
+                        <div class="game-interface">
+                            <div class="game-header">
+                                <h3>Defend Earth: Multiplayer Coordination</h3>
+                                <div class="game-stats">
+                                    <div class="stat">Time to Impact: <span id="impact-timer">7 years, 124 days</span></div>
+                                    <div class="stat">Deflection Success: <span id="deflection-chance">32%</span></div>
+                                </div>
+                            </div>
+                            <div class="game-roles">
+                                <div class="role-card">
+                                    <h4>NASA</h4>
+                                    <p>Orbit refinement & mission planning</p>
+                                    <div class="role-status">Ready</div>
+                                </div>
+                                <div class="role-card">
+                                    <h4>UN Security</h4>
+                                    <p>International coordination & approval</p>
+                                    <div class="role-status">Pending</div>
+                                </div>
+                                <div class="role-card">
+                                    <h4>FEMA</h4>
+                                    <p>Evacuation planning & emergency response</p>
+                                    <div class="role-status">Standby</div>
+                                </div>
+                                <div class="role-card">
+                                    <h4>Media</h4>
+                                    <p>Public communication & awareness</p>
+                                    <div class="role-status">Active</div>
+                                </div>
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn primary">Launch Deflection Mission</button>
+                                <button class="btn secondary">Coordinate Evacuation</button>
+                                <button class="btn secondary">Issue Public Alert</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sonification -->
+                    <div id="sonification" class="innovation-panel">
+                        <div class="sonification-controls">
+                            <h3>Impact Sonification</h3>
+                            <p>Listen to the seismic and atmospheric effects of the impact</p>
+                            <div class="audio-controls">
+                                <button class="btn primary" id="play-audio">Play Simulation</button>
+                                <button class="btn secondary" id="pause-audio">Pause</button>
+                                <button class="btn secondary" id="stop-audio">Stop</button>
+                            </div>
+                            <div class="sound-visualization">
+                                <canvas id="audio-visualizer"></canvas>
+                            </div>
+                            <div class="sound-legend">
+                                <div class="sound-item">
+                                    <div class="sound-color low-freq"></div>
+                                    <span>Seismic Rumble (Low Frequency)</span>
+                                </div>
+                                <div class="sound-item">
+                                    <div class="sound-color mid-freq"></div>
+                                    <span>Blast Wave (Mid Frequency)</span>
+                                </div>
+                                <div class="sound-item">
+                                    <div class="sound-color high-freq"></div>
+                                    <span>Ejecta Hiss (High Frequency)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AR Mode -->
+                    <div id="ar" class="innovation-panel">
+                        <div class="ar-interface">
+                            <h3>Augmented Reality Impact Visualization</h3>
+                            <p>Point your device camera at a surface to visualize the impact crater and effects</p>
+                            <div class="ar-placeholder">
+                                <div class="ar-message">
+                                    <p>AR visualization would appear here with device camera access</p>
+                                    <button class="btn primary">Enable AR Mode</button>
+                                </div>
+                            </div>
+                            <div class="ar-controls">
+                                <button class="btn secondary">Change Crater Size</button>
+                                <button class="btn secondary">Toggle Tsunami Simulation</button>
+                                <button class="btn secondary">Show Blast Radius</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Data Sources</h3>
+                    <ul>
+                        <li>NASA NEO API</li>
+                        <li>USGS DEM & Catalogs</li>
+                        <li>Population Data</li>
+                        <li>Infrastructure Databases</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Technology</h3>
+                    <ul>
+                        <li>Three.js for 3D Visualization</li>
+                        <li>D3.js for 2D Maps</li>
+                        <li>WebGL for Graphics</li>
+                        <li>Python Flask Backend</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Accessibility</h3>
+                    <ul>
+                        <li>Colorblind-Safe Palettes</li>
+                        <li>Screen Reader Compatible</li>
+                        <li>Keyboard Navigation</li>
+                        <li>Mobile Responsive</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Asteroid Impact Simulator &copy; 2023 | For Educational and Research Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

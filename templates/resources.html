@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Resources | Meteor Madness - Asteroid Defense Command{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/resources.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tooltips.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="info-panel thought-panel">
+        <i class="fas fa-lightbulb thought-icon icon-resource-focus"></i>
+        <div class="thought-content">
+            <p class="thought-quote">"Knowledge is the ultimate defense. Empower citizens with clear, accessible information to navigate uncertainty."</p>
+            <span class="thought-source">- Public Safety Mission Brief</span>
+        </div>
+    </section>
+
+    <h2 class="page-title"><i class="fas fa-graduation-cap"></i> Public Preparedness & Education</h2>
+
+    <section class="resource-grid">
+        <div class="resource-card module-card card-steps">
+            <h3 class="module-title-secondary"><i class="fas fa-forward"></i> The Impact Sequence (Step-by-Step)</h3>
+            <p class="resource-description">Interactive infographic explaining atmospheric entry, shockwave, thermal pulse, and long-term effects.</p>
+            <div class="steps-list">
+                <span class="step-item">1. Entry</span>
+                <span class="step-item">2. Airburst/Ground Strike</span>
+                <span class="step-item">3. Shockwave</span>
+                <span class="step-item">4. Ejecta Fallout</span>
+            </div>
+            <button class="btn btn-primary btn-full-width" aria-label="View Animated Guide"><i class="fas fa-play-circle"></i> View Animated Guide</button>
+        </div>
+
+        <div class="resource-card module-card card-terms">
+            <h3 class="module-title-secondary"><i class="fas fa-book"></i> Glossary of Terms & Concepts</h3>
+            <p class="resource-description">Clear explanations for scientific terms like 'Kinetic Energy', 'Richter Magnitude', and 'Tsunami Inundation Zones'.</p>
+            <ul class="term-list">
+                <li><span class="term-highlight">PDC:</span> Planetary Defense Coordination.</li>
+                <li><span class="term-highlight">NEO:</span> Near-Earth Object.</li>
+                <li><span class="term-highlight">MT:</span> Megaton (Energy equivalence).</li>
+            </ul>
+            <button id="open-glossary-btn" class="btn btn-secondary btn-full-width" aria-label="Search Technical Index"><i class="fas fa-search-plus"></i> Search Technical Index</button>
+        </div>
+        
+        <div class="resource-card module-card card-safety">
+            <h3 class="module-title-secondary"><i class="fas fa-headset"></i> Immediate Safety Protocols</h3>
+            <p class="resource-description">Actionable steps for families and communities in the event of an impending, low-probability impact threat.</p>
+            <ul class="safety-list">
+                <li class="safety-item"><i class="fas fa-check-circle"></i> Identify local shelter areas.</li>
+                <li class="safety-item"><i class="fas fa-check-circle"></i> Establish emergency communication plans.</li>
+                <li class="safety-item"><i class="fas fa-check-circle"></i> Secure a minimum 72-hour survival kit.</li>
+            </ul>
+            <button class="btn btn-warning btn-full-width" aria-label="Download Local Safety PDF"><i class="fas fa-download"></i> Download Local Safety PDF</button>
+        </div>
+    </section>
+    
+    <section class="ai-explainability-module module-card">
+        <h3 class="module-title"><i class="fas fa-robot"></i> AI Impact Advisory & Reporting</h3>
+        <p class="module-description">Get a human-readable summary and safety advisory for your last simulation, or generate a full PDF report.</p>
+        <div id="ai-response-container" class="ai-response-container">
+            <p class="no-data-message">No simulation data found. Please run a simulation on the <a href="/simulation">Simulation Command</a> page first.</p>
+        </div>
+        <button class="btn btn-primary" id="explain-impact-btn" disabled aria-label="Explain Last Impact"><i class="fas fa-cogs"></i> Explain Last Impact</button>
+        <button class="btn btn-secondary" id="download-advisory-btn" disabled aria-label="Download Advisory as PDF"><i class="fas fa-file-pdf"></i> Download Advisory as PDF</button>
+        <button class="btn btn-secondary" id="generate-report-btn" disabled aria-label="Generate Full Report"><i class="fas fa-file-alt"></i> Generate Full Report</button>
+    </section>
+    
+    <section class="resource-grid">
+         <div class="resource-card module-card card-datasets">
+            <h3 class="module-title-secondary"><i class="fas fa-link"></i> External Data Feeds & APIs</h3>
+            <p class="resource-description">Direct links to primary sources for deep-dive research and continuous monitoring.</p>
+            <div class="external-links">
+                <a href="https://api.nasa.gov/neo" target="_blank" class="btn btn-tertiary btn-link-ext"><i class="fas fa-database"></i> NASA NeoWs API</a>
+                <a href="https://www.usgs.gov/" target="_blank" class="btn btn-tertiary btn-link-ext"><i class="fas fa-landmark"></i> USGS Seismic Data</a>
+                <a href="#" class="btn btn-tertiary btn-link-ext"><i class="fas fa-circle-nodes"></i> JPL Horizons System</a>
+            </div>
+        </div>
+         <div class="learning-module module-card">
+            <h3 class="module-title"><i class="fas fa-brain"></i> Knowledge Vault Challenge</h3>
+            <p class="module-description">Test your preparedness knowledge with a quick, gamified quiz on impact physics and safety protocols.</p>
+            <button class="btn btn-primary" aria-label="Start Learning Challenge"><i class="fas fa-play-circle"></i> Start Learning Challenge</button>
+        </div>
+    </section>
+</div>
+
+<div id="glossary-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="glossary-title">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="glossary-title" class="module-title-secondary">Educational Glossary</h3>
+            <button id="close-glossary-btn" class="close-btn fas fa-times" aria-label="Close Glossary"></button>
+        </div>
+        <div class="modal-body" id="glossary-body">
+            <div class="glossary-item">
+                <h4>Kinetic Energy</h4>
+                <p>The energy of motion. An asteroid's kinetic energy is determined by its mass and velocity, and is the source of all the destructive power in an impact event.</p>
+            </div>
+            <div class="glossary-item">
+                <h4>Richter Magnitude</h4>
+                <p>A scale used to measure the seismic energy released by an earthquake. In our simulations, we show the equivalent Richter magnitude of the seismic waves caused by the impact.</p>
+            </div>
+            <div class="glossary-item">
+                <h4>Tsunami Inundation Zones</h4>
+                <p>Coastal areas that are at risk of being flooded by a tsunami wave. In a deep-ocean impact, these zones would need to be evacuated to ensure public safety.</p>
+            </div>
+             <div class="glossary-item">
+                <h4>PDC</h4>
+                <p>Planetary Defense Coordination.</p>
+            </div>
+             <div class="glossary-item">
+                <h4>NEO</h4>
+                <p>Near-Earth Object.</p>
+            </div>
+             <div class="glossary-item">
+                <h4>MT</h4>
+                <p>Megaton (Energy equivalence).</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/resources.js') }}"></script>
+{% endblock %}

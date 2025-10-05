@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Impact | Meteor Madness - Asteroid Defense Command{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/impact.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tooltips.css') }}">
+<!-- Removed Google Maps JS include -->
+{% endblock %}
+
+{% block content %}
+<div id="impact-results-content">
+
+    <section class="info-panel thought-panel">
+        <i class="fas fa-exclamation-triangle thought-icon"></i>
+        <div class="thought-content">
+            <p class="thought-quote">"Understanding the consequence is the first step towards effective preparedness. Evacuation zones must be defined now."</p>
+            <span class="thought-source">- Public Safety Directive 7-A</span>
+        </div>
+    </section>
+
+    <h2 class="page-title"><i class="fas fa-chart-area"></i> Primary Consequence Metrics</h2>
+    <section class="results-grid">
+        <div class="result-card card-energy">
+            <i class="fas fa-bolt"></i>
+            <h3 data-tooltip-id="tooltip-energy">Energy Release (TNT)</h3>
+            <div class="result-value" id="energy-value">0 MT</div>
+            <p class="result-label">Megatons Equivalent</p>
+        </div>
+        <div class="result-card card-crater">
+            <i class="fas fa-mountain"></i>
+            <h3 data-tooltip-id="tooltip-crater">Crater Diameter</h3>
+            <div class="result-value" id="crater-value">0 km</div>
+            <p class="result-label">Permanent Surface Scar</p>
+        </div>
+        <div class="result-card card-seismic">
+            <i class="fas fa-earth-americas"></i>
+            <h3 data-tooltip-id="tooltip-seismic">Seismic Magnitude</h3>
+            <div class="result-value" id="seismic-value">0.0</div>
+            <p class="result-label">Richter Scale Equivalent</p>
+        </div>
+        <div class="result-card card-blast">
+            <i class="fas fa-fire-alt"></i>
+            <h3 data-tooltip-id="tooltip-blast">Blast Radius (Thermal)</h3>
+            <div class="result-value" id="blast-value">0 km</div>
+            <p class="result-label">Total Destruction Zone</p>
+        </div>
+        <div class="result-card card-tsunami">
+            <i class="fas fa-water"></i>
+            <h3 data-tooltip-id="tooltip-tsunami">Tsunami Height (Max)</h3>
+            <div class="result-value" id="tsunami-value">0 m</div>
+            <p class="result-label">Peak Wave Amplitude</p>
+        </div>
+        <div class="result-card card-population">
+            <i class="fas fa-users"></i>
+            <h3>Affected Population</h3>
+            <div class="result-value" id="population-value">0</div>
+            <p class="result-label">Est. Population within Zone</p>
+        </div>
+    </section>
+
+    <section class="weather-location-card card-data">
+        <h3><i class="fas fa-cloud-sun-rain"></i> Impact Zone Current Conditions</h3>
+        <div id="weather-report">
+            <p>Location: <span id="weather-location">N/A</span></p>
+            <p>Temperature: <span id="weather-temp">N/A</span></p>
+            <p>Conditions: <span id="weather-desc">N/A</span></p>
+            <p>Wind: <span id="weather-wind">N/A</span></p>
+            <p class="small-text">Conditions matter for blast propagation and fallout.</p>
+        </div>
+    </section>
+
+    <section class="map-visualization-module card-data">
+        <div class="map-header">
+            <h2><i class="fas fa-map-location-dot"></i> Global Impact Zone</h2>
+            <div class="map-controls">
+                <div class="map-search-group">
+                    <label for="city-select" class="sr-only">Search for a City</label>
+                    <select id="city-select" class="control-input-select">
+                        <option value="">-- Select a City --</option>
+                        <option value="New York">New York</option>
+                        <option value="London">London</option>
+                        <option value="Tokyo">Tokyo</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Rio de Janeiro">Rio de Janeiro</option>
+                    </select>
+                </div>
+                <button id="toggle-seismic-btn" class="btn btn-tertiary"><i class="fas fa-history"></i> Toggle Seismic History</button>
+                <button id="toggle-blast-btn" class="btn btn-tertiary"><i class="fas fa-fire"></i> Toggle Blast Contours</button>
+                <button id="colorblind-toggle" class="btn btn-tertiary"><i class="fas fa-eye"></i> Colorblind Mode</button>
+                <button class="btn btn-tertiary"><i class="fas fa-chart-pie"></i> Population Overlay</button>
+            </div>
+        </div>
+
+        <!-- Folium Map iframe replaces Google Maps -->
+        <iframe 
+            src="/impact_map" 
+            id="impact-map-iframe"
+            class="visualization-container"
+            title="Impact Map"
+            width="100%"
+            height="500"
+            style="border:none;">
+        </iframe>
+
+        <div class="map-legend-placeholder">
+            <div class="legend-item"><span class="legend-color legend-crater"></span> Crater / Ground Zero</div>
+            <div class="legend-item"><span class="legend-color legend-blast"></span> Blast Zone (Severe Damage)</div>
+            <div class="legend-item"><span class="legend-color legend-tsunami"></span> Tsunami Inundation (If Coastal)</div>
+        </div>
+    </section>
+
+    <section class="detailed-analysis-grid">
+        <div class="detailed-card card-data">
+            <h3><i class="fas fa-magnifying-glass"></i> Atmospheric Shockwave</h3>
+            <p>Air pressure increase is modeled at <span class="highlight-value">3 PSI</span> up to 50 km radius, sufficient to collapse wood-frame buildings.</p>
+            <button class="btn btn-tertiary"><i class="fas fa-chart-area"></i> View Pressure Gradient</button>
+        </div>
+        <div class="detailed-card card-data">
+            <h3><i class="fas fa-skull-crossbones"></i> Biodiversity Risk</h3>
+            <p>The blast zone overlaps with <span class="highlight-value">2 major biodiversity hotspots</span>. Long-term climate effects require monitoring.</p>
+            <button class="btn btn-tertiary"><i class="fas fa-paw"></i> Access Conservation Protocol</button>
+        </div>
+    </section>
+
+    <section class="detailed-analysis-grid">
+        <div class="detailed-card card-data">
+            <h3><i class="fas fa-mountain-sun"></i> Impact Site Elevation</h3>
+            <p>The impact location has an elevation of <span class="highlight-value" id="elevation-value">N/A</span>, and is classified as <span class="highlight-value" id="impact-type">N/A</span>.</p>
+        </div>
+        <div class="detailed-card card-data">
+            <h3><i class="fas fa-satellite-dish"></i> Orbital & Velocity Data</h3>
+            <p>The simulated asteroid had a size of <span class="highlight-value" id="asteroid-size-value">N/A</span> and a calculated impact velocity of <span class="highlight-value" id="velocity-value">N/A</span>.</p>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/impact.js') }}"></script>
+{% endblock %}

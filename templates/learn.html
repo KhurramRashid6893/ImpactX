@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Educational Mode | Meteor Madness{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="info-panel thought-panel">
+    <i class="fas fa-graduation-cap thought-icon"></i>
+    <div class="thought-content">
+        <p class="thought-quote">"Education is the bedrock of preparedness. A knowledgeable populace is the first line of defense."</p>
+        <span class="thought-source">- Sentinel AI Educational Protocol</span>
+    </div>
+</section>
+
+<h2 class="page-title"><i class="fas fa-chalkboard-user"></i> Interactive Learning Modules</h2>
+<section class="learning-modules-grid">
+    <div class="module-card kinetic-energy-module">
+        <h3 class="module-title-secondary"><i class="fas fa-bolt"></i> The Power of Impact: E = ½mv²</h3>
+        <p>Explore how mass and velocity affect an asteroid's kinetic energy.</p>
+        <div class="interactive-control">
+            <label for="mass-slider">Mass: <span id="mass-value">500 kg</span></label>
+            <input type="range" id="mass-slider" min="100" max="10000" value="500">
+            <label for="velocity-slider">Velocity: <span id="velocity-value">10 km/s</span></label>
+            <input type="range" id="velocity-slider" min="1" max="50" value="10">
+            <p>Kinetic Energy: <span id="energy-result">0 MJ</span></p>
+        </div>
+    </div>
+
+    <div class="module-card crater-scaling-module">
+        <h3 class="module-title-secondary"><i class="fas fa-mountain"></i> Crater Scaling & Effect</h3>
+        <p>Observe how crater size changes with asteroid diameter and impact angle.</p>
+        <div class="crater-visualization">
+            <div class="crater-before">
+                <p>Before Impact</p>
+                <img src="https://via.placeholder.com/150" alt="Before impact">
+            </div>
+            <div class="crater-after">
+                <p>After Impact</p>
+                <img src="https://via.placeholder.com/150" alt="After impact">
+            </div>
+        </div>
+    </div>
+
+    <div class="module-card orbital-mechanics-module">
+        <h3 class="module-title-secondary"><i class="fas fa-route"></i> Understanding Orbit Shapes</h3>
+        <p>Manipulate eccentricity to visualize different orbital paths, from circular to highly elliptical.</p>
+        <div class="orbital-visualization">
+            <div id="orbit-canvas-container">
+                <canvas id="orbit-canvas"></canvas>
+            </div>
+            <div class="interactive-control">
+                <label for="eccentricity-slider">Eccentricity (e): <span id="eccentricity-value">0.0</span></label>
+                <input type="range" id="eccentricity-slider" min="0" max="0.99" value="0.0" step="0.01">
+            </div>
+        </div>
+    </div>
+</section>
+
+<h2 class="page-title"><i class="fas fa-question-circle"></i> Knowledge Vault Quiz</h2>
+<section class="quiz-section module-card">
+    <div id="quiz-container">
+        <h3 id="question-text">Question will appear here...</h3>
+        <div class="options" role="radiogroup">
+            <button class="quiz-option" data-answer="A">Option A</button>
+            <button class="quiz-option" data-answer="B">Option B</button>
+            <button class="quiz-option" data-answer="C">Option C</button>
+        </div>
+        <div id="feedback-message" class="feedback-message"></div>
+        <button id="next-question-btn" class="btn btn-primary">Next Question</button>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/learn.js') }}"></script>
+{% endblock %}

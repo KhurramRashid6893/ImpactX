@@ -1,0 +1,311 @@
+// new lang/en.json file
+
+{
+    "title": {
+        "learn": "Educational Mode | Meteor Madness"
+    },
+    "nav": {
+        "home": "Home",
+        "simulation": "Simulation",
+        "impact": "Data",
+        "defense": "Defense",
+        "resources": "Resources",
+        "about": "About",
+        "learn": "Learn"
+    },
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "simulation": "Simulation Command",
+        "impact": "Impact Analysis",
+        "defense": "Defense Protocols",
+        "resources": "Precautionary Guides",
+        "about": "Sentinel Signature",
+        "chatbot": "Sentinel AI Assistant"
+    },
+    "system": {
+        "status": "System:",
+        "online": "Online"
+    },
+    "quote": {
+        "learn": {
+            "text": "Education is the bedrock of preparedness. A knowledgeable populace is the first line of defense.",
+            "source": "- Sentinel AI Educational Protocol"
+        },
+        "simulation": {
+            "text": "Trajectory is the language of fate. Precision in modeling ensures foresight in defense.",
+            "source": "- Sentinel AI Command Log"
+        },
+        "impact": {
+             "text": "Understanding the consequence is the first step towards effective preparedness. Evacuation zones must be defined now.",
+             "source": "- Public Safety Directive 7-A"
+        },
+        "noData": {
+            "text": "No Simulation Data Found. Please run a simulation first.",
+            "source": "- System Alert"
+        }
+    },
+    "panel": {
+        "learning": {
+            "title": "Interactive Learning Modules"
+        },
+        "kinetic": {
+            "title": "The Power of Impact: E = ½mv²",
+            "desc": "Explore how mass and velocity affect an asteroid's kinetic energy."
+        },
+        "crater": {
+            "title": "Crater Scaling & Effect",
+            "desc": "Observe how crater size changes with asteroid diameter and impact angle."
+        },
+        "orbital": {
+            "title": "Understanding Orbit Shapes",
+            "desc": "Manipulate eccentricity to visualize different orbital paths, from circular to highly elliptical."
+        },
+        "quiz": {
+            "title": "Knowledge Vault Quiz"
+        },
+        "params": {
+            "title": "Scenario Parameters"
+        },
+        "orbital": {
+             "title": "Orbital Elements (Optional)"
+        },
+        "orbProj": {
+             "title": "Orbital Projection (3D)"
+        },
+        "aiCorr": {
+            "title": "AI Predictive Corridor",
+            "desc": "Toggle probabilistic risk corridors based on orbital uncertainty data. (Feature Expansion)"
+        },
+        "sonify": {
+            "title": "Sonification Preview",
+            "desc": "Translate seismic/blast data into audible frequency patterns. (Feature Expansion)"
+        },
+        "metrics": {
+            "title": "Primary Consequence Metrics"
+        },
+        "weather": {
+             "title": "Impact Zone Current Conditions"
+        },
+        "impactZone": {
+             "title": "Global Impact Zone"
+        },
+        "shockwave": {
+            "title": "Atmospheric Shockwave",
+            "desc": "Air pressure increase is modeled at <span class=\"highlight-value\">3 PSI</span> up to 50 km radius, sufficient to collapse wood-frame buildings. Further atmospheric modeling is required."
+        },
+        "biodiversity": {
+            "title": "Biodiversity Risk",
+            "desc": "The blast zone overlaps with <span class=\"highlight-value\">2 major biodiversity hotspots</span>. Long-term climate effects will require global monitoring and conservation efforts."
+        },
+        "elevation": {
+            "title": "Impact Site Elevation",
+            "desc": "The impact location has an elevation of <span class=\"highlight-value\" id=\"elevation-value\">N/A</span>, and is classified as <span class=\"highlight-value\" id=\"impact-type\">N/A</span>. This data is critical for accurate modeling of blast and tsunami effects."
+        }
+    },
+    "label": {
+        "mass": "Mass:",
+        "velocity": "Velocity:",
+        "eccentricity": "Eccentricity (e):",
+        "neoSelect": "Select/Identify Threat Object",
+        "diameter": "Asteroid Diameter:",
+        "speed": "Impact Velocity:",
+        "angle": "Impact Angle:",
+        "targetEnv": "Target Environment",
+        "impactCoords": "Impact Coordinates (Click 3D Globe)",
+        "orbA": "Semi-major axis a (km):",
+        "orbE": "Eccentricity e:",
+        "orbI": "Inclination i (deg):",
+        "orbOmegaAsc": "Long. Ascending Node Ω (deg):",
+        "orbOmegaPeri": "Arg. of Periapsis ω (deg):",
+        "orbNu": "True Anomaly ν (deg):",
+        "citySearch": "-- Select a City --"
+    },
+    "result": {
+        "kineticEnergy": "Kinetic Energy: <span id=\"energy-result\">0 MJ</span>"
+    },
+    "crater": {
+        "before": "Before Impact",
+        "after": "After Impact"
+    },
+    "button": {
+        "next": "Next Question",
+        "nextQuestion": "Next Question",
+        "quizRestart": "Restart Quiz",
+        "runSim": "Run Simulation & Analyze",
+        "analyzing": "Analyzing...",
+        "saveScenario": "Save Scenario Preset",
+        "resetView": "Reset View",
+        "measure": "Measure Distance",
+        "enableAirisk": "Enable AI Risk Modeling",
+        "calibrateAudio": "Calibrate Audio Feed",
+        "goToSim": "Go to Simulation",
+        "colorblind": "Colorblind Mode",
+        "popOverlay": "Population Overlay",
+        "viewPressure": "View Pressure Gradient",
+        "accessProtocol": "Access Conservation Protocol",
+        "viewGuide": "View Animated Guide",
+        "searchIndex": "Search Technical Index",
+        "downloadPdf": "Download Local Safety PDF",
+        "explainImpact": "Explain Last Impact",
+        "downloadAdvisory": "Download Advisory as PDF",
+        "startChallenge": "Start Learning Challenge",
+        "generating": "Generating Advisory..."
+    },
+    "quiz": {
+        "question1": "Which factor has the greatest impact on an asteroid's kinetic energy?",
+        "q1.option1": "Mass",
+        "q1.option2": "Velocity",
+        "q1.option3": "Angle of Impact",
+        "question2": "What is the primary planetary defense strategy for a slow-moving asteroid with a long lead time?",
+        "q2.option1": "Nuclear Deflection",
+        "q2.option2": "Kinetic Impactor",
+        "q2.option3": "Gravity Tractor",
+        "question3": "What does a high orbital eccentricity value (close to 1) represent?",
+        "q3.option1": "A highly elliptical (stretched) orbit",
+        "q3.option2": "A perfectly circular orbit",
+        "q3.option3": "An unstable orbit with no predictable path",
+        "correct": "Correct! Well done, Sentinel.",
+        "incorrect": "Incorrect. Try again to refine your knowledge."
+    },
+    "tip": {
+        "neoSelect": "Real-time data from NASA NeoWs is loaded here.",
+        "diameter": "Influence: Crater size and blast energy.",
+        "velocity": "Influence: Kinetic energy and atmospheric entry effects.",
+        "angle": "Influence: Ejecta pattern and effective energy transfer.",
+        "targetEnv": "Determines seismic and tsunami modeling.",
+        "impactCoords": "Coordinates are sent to the Impact Analysis map.",
+        "orbital": "Filling these fields will override the manual velocity slider."
+    },
+    "neo": {
+        "loading": "-- Loading NEO Data --",
+        "custom": "-- Custom Scenario (Edit Inputs Below) --",
+        "dataOffline": "-- Data Offline: Use Custom Inputs --",
+        "hazardous": "⚠️ HAZARDOUS"
+    },
+    "footer": {
+        "cesiumTip": "Visualization provided by CesiumJS (Web-GL engine). Click on the globe to set the impact location.",
+        "currentLoc": "Current Location:",
+        "fullAddress": "Full Address:",
+        "privacy": "Privacy Policy",
+        "apiStatus": "API Status",
+        "credit": "Developed with integrity by Team: The_Quasar_Effect 🚀 | <span class=\"footer-year\">2025</span>"
+    },
+    "chatbot": {
+        "initialMessage": "Hello, I am Sentinel AI. I provide real-time facts and safety guidance regarding asteroid threats. How may I assist your defense protocols?",
+        "typing": "Sentinel AI is typing...",
+        "connectionError": "Sentinel AI: Connection interrupted. Please check your network."
+    },
+    "impact": {
+        "noData": {
+            "title": "No Simulation Data",
+            "desc": "Please run a simulation on the Simulation page first to see results."
+        },
+        "blastRadiusTitle": "Blast Radius",
+        "locationTitle": "Location",
+        "impactZone": "Impact Zone",
+        "groundZero": "Ground Zero",
+        "unknownLocation": "Unknown Location"
+    },
+    "resources": {
+        "advisoryPrompt": "Click 'Explain Last Impact' to get a safety advisory.",
+        "advisoryError": "Error: Failed to generate advisory. Please try again or check API connection.",
+        "generating": "Generating...",
+        "noData": "No simulation data found. Please run a simulation on the <a href=\"/simulation\" data-lang-key=\"resources.simPageLink\">Simulation Command</a> page first.",
+        "simPageLink": "Simulation Command"
+    },
+    "glossary": {
+        "title": "Educational Glossary",
+        "kineticEnergy": {
+            "title": "Kinetic Energy",
+            "desc": "The energy of motion. An asteroid's kinetic energy is determined by its mass and velocity, and is the source of all the destructive power in an impact event."
+        },
+        "richter": {
+            "title": "Richter Magnitude",
+            "desc": "A scale used to measure the seismic energy released by an earthquake. In our simulations, we show the equivalent Richter magnitude of the seismic waves caused by the impact."
+        },
+        "tsunamiZone": {
+            "title": "Tsunami Inundation Zones",
+            "desc": "Coastal areas that are at risk of being flooded by a tsunami wave. In a deep-ocean impact, these zones would need to be evacuated to ensure public safety."
+        }
+    },
+    "term": {
+        "pdc": "PDC",
+        "pdc.desc": "Planetary Defense Coordination.",
+        "neo": "NEO",
+        "neo.desc": "Near-Earth Object.",
+        "mt": "MT",
+        "mt.desc": "Megaton (Energy equivalence)."
+    }
+}
+
+
+{
+  "nav.home": "Home",
+  "nav.simulation": "Simulation",
+  "nav.impact": "Impact Analysis",
+  "nav.defense": "Defense Protocols",
+  "nav.resources": "Resources",
+  "nav.about": "About",
+
+  "sidebar.dashboard": "Dashboard",
+  "sidebar.simulation": "Simulation Command",
+  "sidebar.impact": "Impact Analysis",
+  "sidebar.defense": "Defense Protocols",
+  "sidebar.resources": "Precautionary Guides",
+  "sidebar.about": "Sentinel Signature",
+  "sidebar.chatbot": "Sentinel AI Assistant",
+
+  "system.status": "System:",
+  "system.online": "Online",
+
+  "quote.impact.text": "Understanding the consequence is the first step towards effective preparedness. Evacuation zones must be defined now.",
+  "quote.impact.source": "- Public Safety Directive 7-A",
+
+  "panel.metrics.title": "Primary Consequence Metrics",
+  "metric.energy.title": "Energy Release (TNT)",
+  "metric.energy.label": "Megatons Equivalent",
+  "metric.crater.title": "Crater Diameter",
+  "metric.crater.label": "Permanent Surface Scar",
+  "metric.seismic.title": "Seismic Magnitude",
+  "metric.seismic.label": "Richter Scale Equivalent",
+  "metric.blast.title": "Blast Radius (Thermal)",
+  "metric.blast.label": "Total Destruction Zone",
+  "metric.tsunami.title": "Tsunami Height (Max)",
+  "metric.tsunami.label": "Peak Wave Amplitude",
+  "metric.population.title": "Affected Population",
+  "metric.population.label": "Est. Population within Zone",
+
+  "panel.weather.title": "Impact Zone Current Conditions",
+  "weather.location": "Location:",
+  "weather.temp": "Temperature:",
+  "weather.conditions": "Conditions:",
+  "weather.wind": "Wind:",
+  "weather.tip": "Conditions matter for blast propagation and fallout.",
+
+  "panel.impactZone.title": "Global Impact Zone",
+  "label.citySearch": "Search for a City",
+  "button.colorblind": "Colorblind Mode",
+  "button.popOverlay": "Population Overlay",
+
+  "legend.crater": "Crater / Ground Zero",
+  "legend.blast": "Blast Zone (Severe Damage)",
+  "legend.tsunami": "Tsunami Inundation (If Coastal)",
+
+  "panel.shockwave.title": "Atmospheric Shockwave",
+  "panel.shockwave.desc": "Air pressure increase is modeled at 3 PSI up to 50 km radius, sufficient to collapse wood-frame buildings. Further atmospheric modeling is required.",
+  "button.viewPressure": "View Pressure Gradient",
+
+  "panel.biodiversity.title": "Biodiversity Risk",
+  "panel.biodiversity.desc": "The blast zone overlaps with 2 major biodiversity hotspots. Long-term climate effects will require global monitoring and conservation efforts.",
+  "button.accessProtocol": "Access Conservation Protocol",
+
+  "panel.elevation.title": "Impact Site Elevation",
+  "panel.elevation.desc": "The impact location has an elevation of N/A, and is classified as N/A. This data is critical for accurate modeling of blast and tsunami effects.",
+
+  "panel.orbital.title": "Orbital & Velocity Data",
+  "panel.orbital.desc": "The simulated asteroid had a size of N/A and a calculated impact velocity of N/A.",
+
+  "footer.privacy": "Privacy Policy",
+  "footer.apiStatus": "API Status",
+  "footer.credit": "Developed with integrity by Team: The_Quasar_Effect 🚀"
+}

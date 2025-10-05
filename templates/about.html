@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}About | Meteor Madness{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="page">
+    <div class="page-header">
+        <h2>About Meteor Madness</h2>
+        <p>Our mission is to make planetary defense science accessible to everyone.</p>
+    </div>
+    
+    <div class="narrative-container module-card">
+        <div class="narrative-header">
+            <h2>The Impactor-2025 Scenario</h2>
+            <p>A hypothetical look at a planetary defense response timeline.</p>
+        </div>
+        <div class="narrative-timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-stage active" data-stage="0">
+                <div class="stage-dot"></div>
+                <span class="stage-title">Detection</span>
+            </div>
+            <div class="timeline-stage" data-stage="1">
+                <div class="stage-dot"></div>
+                <span class="stage-title">Simulation</span>
+            </div>
+            <div class="timeline-stage" data-stage="2">
+                <div class="stage-dot"></div>
+                <span class="stage-title">Response</span>
+            </div>
+            <div class="timeline-stage" data-stage="3">
+                <div class="stage-dot"></div>
+                <span class="stage-title">Mitigation</span>
+            </div>
+        </div>
+        <div id="narrative-content" class="narrative-content">
+            <div class="narrative-content-card">
+                <h4><i class="fas fa-satellite-dish"></i> Phase 1: Detection</h4>
+                <p>On March 12, 2025, a new object, Impactor-2025, was detected by a network of ground-based telescopes. Initial orbital analysis suggests a low-probability, but non-zero, chance of Earth impact.</p>
+            </div>
+        </div>
+        <div class="narrative-controls">
+            <button id="prev-stage-btn" class="btn secondary" disabled>Previous</button>
+            <button id="next-stage-btn" class="btn primary">Next</button>
+        </div>
+    </div>
+
+    <div class="about-section module-card">
+        <h3>Project Overview</h3>
+        <p>Meteor Madness is a web application created for the NASA Space Apps Challenge to provide an interactive platform for exploring asteroid impact scenarios and planetary defense strategies. By integrating real data from NASA and a simplified physics engine, we aim to educate users about the science behind these events and empower them to understand the importance of planetary defense initiatives.</p>
+    </div>
+    <div class="about-section module-card">
+        <h3>Team: The Quasar Effect 🚀</h3>
+        <div class="about-grid">
+            <div class="team-card">
+                <img src="https://via.placeholder.com/150" alt="Team member 1">
+                <h3>[Team Member 1]</h3>
+                <p>Lead Developer</p>
+            </div>
+            <div class="team-card">
+                <img src="https://via.placeholder.com/150" alt="Team member 2">
+                <h3>[Team Member 2]</h3>
+                <p>UI/UX Designer</p>
+            </div>
+            <div class="team-card">
+                <img src="https://via.placeholder.com/150" alt="Team member 3">
+                <h3>[Team Member 3]</h3>
+                <p>Data Scientist</p>
+            </div>
+        </div>
+    </div>
+    <div class="about-section module-card">
+        <h3>Acknowledgments</h3>
+        <p>We extend our sincere thanks to the NASA Space Apps Challenge for providing the platform to build this project. We also thank the creators and maintainers of the open-source libraries and datasets that made this possible, including CesiumJS, Leaflet, and the NASA NeoWs API.</p>
+    </div>
+    <div class="about-section module-card">
+        <h3>Contact & Feedback</h3>
+        <p>Have questions or suggestions? We'd love to hear from you.</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn primary">Send Message</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/about.js') }}"></script>
+{% endblock %}

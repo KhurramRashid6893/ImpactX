@@ -1,0 +1,8 @@
+Flask
+requests
+requests_cache
+google-generativeai
+gunicorn
+folium
+geopy
+functions-framework
