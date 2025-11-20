@@ -1,5 +1,5 @@
 # ImpactX – Meteor Madness: Planetary Defense Command
-
+ 
 A Flask-based web app that turns near‑Earth object (NEO) data and basic impact physics into a civilian‑friendly **planetary defense dashboard**. It shows upcoming asteroids, lets you **simulate impact scenarios**, renders a **Folium map** of blast effects, provides **AI explanations** via Gemini, and includes **preparedness/mitigation modules**.
 
 > Tech stack: Flask, Jinja2, JS/CSS, Folium, requests/requests-cache, Google Gemini (`google-generativeai`), OpenWeatherMap, NASA NEO API, OpenStreetMap Nominatim, Geopy, Gunicorn, Docker.
